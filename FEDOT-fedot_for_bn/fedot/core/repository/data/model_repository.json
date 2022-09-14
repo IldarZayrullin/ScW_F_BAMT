@@ -1,0 +1,460 @@
+{
+  "metadata": {
+    "custom_class": {
+      "accepted_node_types": [
+        "any"
+      ],
+      "description": "Implementations of the custom classification models",
+      "forbidden_node_types": "[]",
+      "input_type": "[DataTypesEnum.table]",
+      "output_type": "[DataTypesEnum.table]",
+      "strategies": [
+        "fedot.core.operations.evaluation.classification",
+        "FedotClassificationStrategy"
+      ],
+      "tags": [
+        "ml",
+        "custom"
+      ],
+      "tasks": "[TaskTypesEnum.classification]"
+    },
+    "custom_regr": {
+      "accepted_node_types": [
+        "any"
+      ],
+      "description": "Implementations of the custom regression models",
+      "forbidden_node_types": "[]",
+      "input_type": "[DataTypesEnum.table]",
+      "output_type": "[DataTypesEnum.table]",
+      "strategies": [
+        "fedot.core.operations.evaluation.regression",
+        "FedotRegressionStrategy"
+      ],
+      "tags": [
+        "ml",
+        "custom"
+      ],
+      "tasks": "[TaskTypesEnum.regression]"
+    },
+    "sklearn_class": {
+      "accepted_node_types": [
+        "any"
+      ],
+      "description": "Implementations of the classification models from scikit-learn framework",
+      "forbidden_node_types": "[]",
+      "input_type": "[DataTypesEnum.table]",
+      "output_type": "[DataTypesEnum.table]",
+      "strategies": [
+        "fedot.core.operations.evaluation.classification",
+        "SkLearnClassificationStrategy"
+      ],
+      "tags": [
+        "ml",
+        "sklearn"
+      ],
+      "tasks": "[TaskTypesEnum.classification]"
+    },
+    "sklearn_clust": {
+      "accepted_node_types": [
+        "any"
+      ],
+      "description": "Implementations of the clustering models from scikit-learn framework",
+      "forbidden_node_types": "[]",
+      "input_type": "[DataTypesEnum.table]",
+      "output_type": "[DataTypesEnum.table]",
+      "strategies": [
+        "fedot.core.operations.evaluation.clustering",
+        "SkLearnClusteringStrategy"
+      ],
+      "tags": [
+        "ml",
+        "sklearn"
+      ],
+      "tasks": "[TaskTypesEnum.clustering]"
+    },
+    "sklearn_regr": {
+      "accepted_node_types": [
+        "any"
+      ],
+      "description": "Implementations of the regression models from scikit-learn framework",
+      "forbidden_node_types": "[]",
+      "input_type": "[DataTypesEnum.table]",
+      "output_type": "[DataTypesEnum.table]",
+      "strategies": [
+        "fedot.core.operations.evaluation.regression",
+        "SkLearnRegressionStrategy"
+      ],
+      "tags": [
+        "ml",
+        "sklearn",
+        "composition"
+      ],
+      "tasks": "[TaskTypesEnum.regression, TaskTypesEnum.ts_forecasting]"
+    },
+    "text_classification_sklearn": {
+      "description": "Text classification",
+      "forbidden_node_types": [
+        "secondary"
+      ],
+      "input_type": "[DataTypesEnum.text]",
+      "output_type": "[DataTypesEnum.table]",
+      "strategies": [
+        "fedot.core.operations.evaluation.text",
+        "SkLearnTextVectorizeStrategy"
+      ],
+      "tags": [
+        "nlp",
+        "non-default"
+      ],
+      "tasks": "[TaskTypesEnum.classification]"
+    },
+     "text_classification_gensim": {
+      "description": "Text classification",
+      "forbidden_node_types": [
+        "secondary"
+      ],
+      "input_type": "[DataTypesEnum.text]",
+      "output_type": "[DataTypesEnum.table]",
+      "strategies": [
+        "fedot.core.operations.evaluation.text",
+        "GensimTextVectorizeStrategy"
+      ],
+      "tags": [
+        "nlp",
+        "non-default"
+      ],
+      "tasks": "[TaskTypesEnum.classification]"
+    },
+    "ts_model": {
+      "description": "Implementations of the time series models",
+      "input_type": "[DataTypesEnum.ts]",
+      "output_type": "[DataTypesEnum.table]",
+      "strategies": [
+        "fedot.core.operations.evaluation.time_series",
+        "FedotTsForecastingStrategy"
+      ],
+      "tags": [
+        "time_series"
+      ],
+      "tasks": "[TaskTypesEnum.ts_forecasting]"
+    },
+    "custom_model": {
+      "description": "Implementations of the models specified by user with external code source",
+      "input_type": "[DataTypesEnum.ts, DataTypesEnum.table, DataTypesEnum.text]",
+      "output_type": "[DataTypesEnum.table]",
+      "strategies": [
+        "fedot.core.operations.evaluation.custom",
+        "CustomModelStrategy"
+      ],
+      "tags": [
+        "all_purpose",
+        "non-default"
+      ],
+      "tasks": "[TaskTypesEnum.regression, TaskTypesEnum.ts_forecasting, TaskTypesEnum.classification, TaskTypesEnum.clustering]"
+    }
+  },
+  "operations": {
+    "adareg": {
+      "meta": "sklearn_regr",
+      "presets": ["fast_train", "ts", "*tree"],
+      "tags": [
+        "boosting",
+        "non_multi"
+      ]
+    },
+    "ar": {
+      "meta": "ts_model",
+      "presets": ["fast_train", "ts"],
+      "tags": [
+        "simple",
+        "interpretable",
+        "non_lagged",
+        "in_sample_refit"
+      ]
+    },
+    "arima": {
+      "meta": "ts_model",
+      "presets": ["ts"],
+      "tags": [
+        "simple",
+        "interpretable",
+        "non_lagged",
+        "in_sample_refit"
+      ]
+    },
+    "clstm": {
+      "meta": "ts_model",
+      "tags": [
+        "non_lagged"
+      ]
+    },
+    "bernb": {
+      "meta": "sklearn_class",
+      "presets": ["fast_train"],
+      "tags": [
+        "bayesian", "non_multi"
+      ]
+    },
+    "catboost": {
+      "meta": "sklearn_class",
+      "presets": ["*tree"],
+      "tags": [
+        "boosting", "non-default"
+      ]
+    },
+    "catboostreg": {
+      "meta": "sklearn_regr",
+      "presets": ["*tree"],
+      "tags": [
+        "boosting", "non_multi", "non-default"
+      ]
+    },
+    "cntvect": {
+      "meta": "text_classification_sklearn",
+      "tags": [
+        "non-default", "text"
+      ]
+    },
+    "dt": {
+      "meta": "sklearn_class",
+      "presets": ["fast_train", "*tree"],
+      "tags": [
+        "tree",
+        "interpretable"
+      ]
+    },
+    "dtreg": {
+      "meta": "sklearn_regr",
+      "presets": ["fast_train", "ts", "*tree"],
+      "tags": [
+        "tree",
+        "interpretable"
+      ]
+    },
+    "gbr": {
+      "meta": "sklearn_regr",
+      "presets": ["*tree"],
+      "tags": [
+        "boosting",
+        "non_multi"
+      ]
+    },
+    "kmeans": {
+      "meta": "sklearn_clust",
+      "presets": ["fast_train"]
+    },
+    "knn": {
+      "meta": "custom_class",
+      "presets": ["fast_train"],
+      "tags": [
+        "simple",
+        "correct_params"
+      ]
+    },
+    "knnreg": {
+      "meta": "custom_regr",
+      "presets": ["fast_train", "ts"],
+      "tags": [
+        "simple",
+        "correct_params"
+      ]
+    },
+    "lasso": {
+      "meta": "sklearn_regr",
+      "presets": ["fast_train", "ts"],
+      "tags": [
+        "simple",
+        "linear",
+        "interpretable"
+      ]
+    },
+    "lda": {
+      "meta": "custom_class",
+      "presets": ["fast_train"],
+      "tags": [
+        "discriminant", "linear", "correct_params", "non-default"
+      ]
+    },
+    "lgbm": {
+      "meta": "sklearn_class",
+      "tags": [
+        "boosting", "tree", "non-default"
+      ]
+    },
+    "lgbmreg": {
+      "meta": "sklearn_regr",
+      "presets": ["*tree"],
+      "tags": [
+        "boosting", "tree", "non_multi", "non-default"
+      ]
+    },
+    "linear": {
+      "meta": "sklearn_regr",
+      "presets": ["fast_train", "ts"],
+      "tags": [
+        "simple", "linear", "interpretable"
+      ]
+    },
+    "logit": {
+      "meta": "sklearn_class",
+      "presets": ["fast_train"],
+      "tags": [
+        "simple",
+        "linear",
+        "interpretable",
+        "non_multi"
+      ]
+    },
+    "mlp": {
+      "meta": "sklearn_class",
+      "tags": [
+        "neural"
+      ]
+    },
+    "multinb": {
+      "meta": "sklearn_class",
+      "presets": ["fast_train"],
+      "tags": [
+        "non-default",
+        "bayesian",
+        "non_multi"
+      ]
+    },
+    "qda": {
+      "meta": "custom_class",
+      "presets": ["fast_train"],
+      "tags": [
+        "discriminant",
+        "quadratic"
+      ]
+    },
+    "rf": {
+      "meta": "sklearn_class",
+      "presets": ["fast_train", "*tree"],
+      "tags": ["tree"]
+    },
+    "rfr": {
+      "meta": "sklearn_regr",
+      "presets": ["fast_train", "*tree"],
+      "tags": ["tree"]
+    },
+    "ridge": {
+      "meta": "sklearn_regr",
+      "presets": ["fast_train", "ts"],
+      "tags": [
+        "simple",
+        "linear",
+        "interpretable"
+      ]
+    },
+    "polyfit": {
+      "meta": "ts_model",
+      "presets": ["fast_train", "ts"],
+      "tags": [
+        "simple",
+        "non_lagged",
+        "non_linear",
+        "interpretable",
+        "correct_params"
+      ]
+    },
+    "sgdr": {
+      "meta": "sklearn_regr",
+      "presets": ["fast_train", "ts"],
+      "tags": [
+        "non_multi"
+      ]
+    },
+    "stl_arima": {
+      "meta": "ts_model",
+      "presets": ["ts"],
+      "tags": [
+        "simple",
+        "interpretable",
+        "non_lagged",
+        "in_sample_refit"
+      ]
+    },
+    "glm": {
+      "meta": "ts_model",
+      "presets": ["fast_train", "ts"],
+      "tags": [
+        "simple",
+        "interpretable",
+        "non_lagged",
+        "correct_params"
+      ]
+    },
+    "ets": {
+      "meta": "ts_model",
+      "presets": ["fast_train", "ts"],
+      "tags": [
+        "simple",
+        "interpretable",
+        "non_lagged"
+      ]
+    },
+    "svc": {
+      "meta": "custom_class",
+      "tags": [
+        "no_prob",
+        "expensive"
+      ]
+    },
+    "svr": {
+      "meta": "sklearn_regr",
+      "tags": [
+        "non_multi"
+      ]
+    },
+    "tfidf": {
+      "meta": "text_classification_sklearn",
+      "tags": [
+        "non-default",
+        "text"
+      ]
+    },
+    "treg": {
+      "meta": "sklearn_regr",
+      "presets": ["*tree"],
+      "tags": [
+        "tree"
+      ]
+    },
+    "word2vec": {
+      "meta": "text_classification_gensim",
+      "tags": [
+        "non-default", "text"
+      ]
+    },
+    "xgboost": {
+      "meta": "sklearn_class",
+      "presets": ["*tree"],
+      "tags": [
+        "boosting", "tree", "non-default"
+      ]
+    },
+    "xgbreg": {
+      "meta": "sklearn_regr",
+      "presets": ["*tree"],
+      "tags": [
+        "boosting", "tree", "non_multi", "non-default"
+      ]
+    },
+    "cnn": {
+      "meta": "custom_class",
+      "tags": [
+        "deep", "non-default"
+      ],
+      "input_type": "[DataTypesEnum.image]",
+      "output_type": "[DataTypesEnum.table]"
+    },
+    "custom": {
+		"meta": "custom_model",
+		"tags": [
+          "all_purpose",
+          "non-default"
+        ]
+	}
+  }
+}

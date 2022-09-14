@@ -1,0 +1,60 @@
+
+  File "C:\Users\user\anaconda3\lib\site-packages\networkx\convert.py", line 169, in to_networkx_graph
+    return from_edgelist(data, create_using=create_using)
+
+  File "C:\Users\user\anaconda3\lib\site-packages\networkx\convert.py", line 405, in from_edgelist
+    G.add_edges_from(edgelist)
+
+  File "C:\Users\user\anaconda3\lib\site-packages\pgmpy\base\DAG.py", line 285, in add_edges_from
+    self.add_edge(edge[0], edge[1])
+
+  File "C:\Users\user\anaconda3\lib\site-packages\pgmpy\models\BayesianNetwork.py", line 124, in add_edge
+    raise ValueError(
+
+ValueError: Loops are not allowed. Adding the edge from (Tectonic regime->Lithology) forms a loop.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+
+  File "C:\Users\user\Downloads\FEDOT-fedot_for_bn\examples\fedot_bn_example — копия.py", line 460, in <module>
+    structure = run_example()
+
+  File "C:\Users\user\Downloads\FEDOT-fedot_for_bn\examples\fedot_bn_example — копия.py", line 401, in run_example
+    optimized_graph = optimiser.optimise(partial(custom_metric, data=discretized_data))
+
+  File "C:\Users\user\Downloads\FEDOT-fedot_for_bn\fedot\core\optimisers\gp_comp\gp_optimiser.py", line 250, in optimise
+    new_population = self._evaluate_individuals(new_population, objective_function,
+
+  File "C:\Users\user\Downloads\FEDOT-fedot_for_bn\fedot\core\optimisers\gp_comp\gp_optimiser.py", line 437, in _evaluate_individuals
+    evaluated_individuals = evaluate_individuals(individuals_set=individuals_set,
+
+  File "C:\Users\user\Downloads\FEDOT-fedot_for_bn\fedot\core\optimisers\gp_comp\gp_operators.py", line 148, in evaluate_individuals
+    evaluated_individuals = single_evaluating(reversed_individuals)
+
+  File "C:\Users\user\Downloads\FEDOT-fedot_for_bn\fedot\core\optimisers\gp_comp\evaluating.py", line 22, in single_evaluating
+    individual.ind.fitness = calculate_objective(graph, individual.objective_function,
+
+  File "C:\Users\user\Downloads\FEDOT-fedot_for_bn\fedot\core\optimisers\gp_comp\evaluating.py", line 41, in calculate_objective
+    calculated_fitness = objective_function(converted_object)
+
+  File "C:\Users\user\Downloads\FEDOT-fedot_for_bn\examples\fedot_bn_example — копия.py", line 80, in custom_metric
+    bn_model = BayesianModel(struct)
+
+  File "C:\Users\user\anaconda3\lib\site-packages\pgmpy\models\BayesianModel.py", line 12, in __init__
+    super(BayesianModel, self).__init__(ebunch=ebunch, latents=latents)
+
+  File "C:\Users\user\anaconda3\lib\site-packages\pgmpy\models\BayesianNetwork.py", line 98, in __init__
+    super(BayesianNetwork, self).__init__(ebunch=ebunch, latents=latents)
+
+  File "C:\Users\user\anaconda3\lib\site-packages\pgmpy\base\DAG.py", line 74, in __init__
+    super(DAG, self).__init__(ebunch)
+
+  File "C:\Users\user\anaconda3\lib\site-packages\networkx\classes\digraph.py", line 318, in __init__
+    convert.to_networkx_graph(incoming_graph_data, create_using=self)
+
+  File "C:\Users\user\anaconda3\lib\site-packages\networkx\convert.py", line 171, in to_networkx_graph
+    raise nx.NetworkXError("Input is not a valid edge list") from e
+
+NetworkXError: Input is not a valid edge list
